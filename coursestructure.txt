@@ -1,0 +1,332 @@
+Note:
+Summary:
+mv => move or rename
+cp-> copy
+Here is a table for quick understanding:
+
+Git Version 1.x:
+
+Enter image description here
+
+Git Version 2.x:
+
+Enter image description here
+
+Long-form flags:
+
+Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+$ git revert HEAD~1
+Auto-merging start.txt
+CONFLICT (content): Merge conflict in start.txt
+error: could not revert 1821cff... Revert "Revert "restting""
+hint: after resolving the conflicts, mark the corrected paths
+hint: with 'git add <paths>' or 'git rm <paths>'
+hint: and commit the result with 'git commit'
+
+Suji@SujathaJinka MINGW64 ~/projects/git-demo (master|REVERTING)
+$ git log --oneline --graph --decorate --all
+* f8a0031 (HEAD -> master, origin/master, origin/HEAD) for revert chcek
+* 1821cff Revert "Revert "restting""
+
+
+
+git reset commitid or Head^1
+git commit -am "Reverting chnages"
+git push -f
+ or 
+revert selected commit in tortoise
+commmmit and push that revert file to remote
+
+
+git add -A is equivalent to git add --all
+git add -u is equivalent to git add --update
+
+git add -A stages all changes
+
+git add . stages new files and modifications, without deletions
+
+git add -u stages modifications and deletions, without new files
+
+Section 5: Basic Git Commands
+0 / 16|1hr 42min
+12
+
+
+			There are many ways to create a file using BASH.
+
+			using touch touch newFile.txt only creates.
+			using echo echo > newFile.txt only creates.
+			using cat cat > newFile.txt creates and can start appending to file.
+			using vim vim newFile.txt creates and can start editing the file.
+
+			Also the .txt extension is only for convenience and categorization. Some editors view the extension to format the data, but for a txt there's no differnce.
+
+			After creating the file, add it to the git repository.
+
+			git add newFile.txt
+			git commit -m "added new file"
+21. Basic Commands Overview
+2min
+
+
+
+22. Starting with a Fresh Project (git init)
+8min
+
+							Suji@SujathaJinka MINGW64 ~/projects
+							$ git init fresh-project
+							Initialized empty Git repository in C:/Users/Sujatha Suresh/projects/fresh-project/.git/
+
+							Suji@SujathaJinka MINGW64 ~/projects
+							$ ls
+							fresh-project/  git-demo/
+
+							Suji@SujathaJinka MINGW64 ~/projects
+							$ cd fresh-project
+
+							Suji@SujathaJinka MINGW64 ~/projects/fresh-project (master)
+							$ ls
+
+							Suji@SujathaJinka MINGW64 ~/projects/fresh-project (master)
+							$ ls -al
+							total 4
+							drwxr-xr-x 1 Suji 197121 0 Jul 10 10:09 ./
+							drwxr-xr-x 1 Suji 197121 0 Jul 10 10:09 ../
+							drwxr-xr-x 1 Suji 197121 0 Jul 10 10:09 .git/
+
+							Suji@SujathaJinka MINGW64 ~/projects/fresh-project (master)
+							$ cd .git
+
+							Suji@SujathaJinka MINGW64 ~/projects/fresh-project/.git (GIT_DIR!)
+							$ ls
+							config  description  HEAD  hooks/  info/  objects/  refs/
+
+
+								$ cd ..
+
+
+								$ pwd
+								/c/Users/Sujatha Suresh/projects/fresh-project
+
+
+								$ git status
+								On branch master
+
+								No commits yet
+
+								nothing to commit (create/copy files and use "git add" to track)
+
+								$ git add start.txt
+								warning: LF will be replaced by CRLF in start.txt.
+								The file will have its original line endings in your working directory
+
+								Suji@SujathaJinka MINGW64 ~/projects/fresh-project (master)
+								$ ^C
+
+								Suji@SujathaJinka MINGW64 ~/projects/fresh-project (master)
+								$ git status
+								On branch master
+
+								No commits yet
+
+								Changes to be committed:
+								  (use "git rm --cached <file>..." to unstage)
+										new file:   start.txt
+
+								bash: mate: command not found
+
+								Suji@SujathaJinka MINGW64 ~/projects/fresh-project (master)
+								$ mate english.txt
+								bash: mate: command not found
+
+								Suji@SujathaJinka MINGW64 ~/projects/fresh-project (master)
+								$ echo "The articles in English are the definite article the and the indefinite articles a and an. The definite article is used when the speaker believes that the listener knows the identity of the noun's referent (because it is obvious, because it is common knowledge, or because it was mentioned in the same sentence or an earlier sentence). The indefinite article is used when the speaker believes that the listener does not have to be told the identity of the referent. No article is used in some noun phrases." >> start.txt
+
+								Suji@SujathaJinka MINGW64 ~/projects/fresh-project (master)
+								$ git status
+								On branch master
+
+								No commits yet
+
+								Untracked files:
+								  (use "git add <file>..." to include in what will be committed)
+										start.txt
+
+								nothing added to commit but untracked files present (use "git add" to track)
+							
+								git add start.txt	
+								
+								$ git commit -m "Adding start file"
+								[master (root-commit) a52fbd0] Adding start file
+								 1 file changed, 1 insertion(+)
+								 create mode 100644 start.txt
+
+					Suji@SujathaJinka MINGW64 ~/projects
+					$ rm -rf fresh-project/
+
+
+
+
+23. Adding Git to an Existing Project (git init)
+7min
+				To start git with freah project>git init fresh-project
+				change name of project folder: >mv course-starting-project typescript-project
+					>pwd means pwd (Stands for “print working directory”) gives where we are c:/user/suresh sujatha
+				inside project folder
+				1.To start git in existing project>git init 
+				2.
+				To see .git file>ls -al 
+
+				3.To add all files:>git add .
+				4.To see status of git>git status
+				5. git commit -m "My first commit,inline"
+				6.if u remove git in ur projrct.git > -rm -rf .git
+
+
+
+24. Starting on GitHub by Joining an Existing
+Project (git clone)
+6min
+				fork in github means example :your organistion github code copy to your personal github personal space
+				>git clone https://github.com/aws.git
+				>ls
+				>cd started-web
+				>ls
+				>ls -al
+				>git status
+
+
+
+
+
+25. Basic Git Workflow (add, commit, pull & push)
+11min
+
+
+
+26. Tracked Files
+5min
+add new file newfile.txt
+ls
+u can see file
+git ls-files
+we cannot see
+because git don;t know i.e un tracked file
+git add newfile.txt
+git status
+add to commit
+git ls -files:u can see that file staged area
+git commit -m "added file"
+or
+u can add both
+git commit -am "added file"
+git push
+
+   note:git restore newfile.txt(before adding to git i.e untracked)
+	git restore --staged newfile.txt(after adding to git)
+	cd ..
+	cd ../../
+27. Editing Files
+4min
+
+
+28. Recursive Add
+4min
+# add all files, except the files, what are mentioned in .gitignore
+git add .
+Note:git add . means it will add all files inside folder also
+ex:level1/level2/level3/file.txt
+Add and commot at a time:git add -am "addednew file"
+add all files :git add .
+remove:rm -rf level5
+
+
+29. Backing Out Changes
+4min
+note:git restore newfile.txt(before adding to git i.e untracked)
+	git restore --staged newfile.txt(after adding to git)
+
+30. Renaming and Moving Files
+11min
+To rename file :git mv oldfilename.txt newfilename.txt
+git mv level2.txt level3
+
+
+
+31. Deleting Files
+10min
+note:to remove files which is untracked i.e not know to git:rm file.txt
+	if we want to remove files which is in staging area i.e which is known to git :git rm file.txt
+note:git ls-files
+	:ls
+ex:rm -rf level1 -> to remove all files inside
+ex:git add -A  or git add . -> stage all new modied or deleted
+
+32. History
+6min
+git help log -> to show all commands in browser
+git log -> to show commit history-> recent is in top-> type q to exit
+$ git log --abbrev-commit -> to show commit id shorter
+$ git log --oneline --graph --decorate -> to show history commits oneline
+$ git log e225f95...9e6ee7a
+$ git log --since="3 days ago"
+	Specific History of Individual File
+Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+$ git log -p start.txt
+$ git log --oneline -M --stat --follow start.txt
+$ git show 71776615ab665eff704df6d2f628a7a8e6f89ebf
+
+
+git config --global --edit -> to open config file
+
+
+ 
+
+33. Git Alias
+4min
+	get all history
+$ git log --all --graph --decorate --oneline
+
+Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+$ git hist
+git: 'hist' is not a git command. See 'git --help'.
+
+The most similar command is
+        bisect
+
+Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+$ git config --global alias.hist "log --all --graph --decorate --oneline"
+
+Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+$ git hist
+
+
+34. Ignoring Unwanted Files and Folders
+7min
+git ignore pattern examples:
+specific file:Myfile.ext
+file pattern : *.ext
+folder:		
+	$ ls -al -> it will show all files including unwanted
+	$ touch .gitignore
+	it will open .gitignore file -> inside file (to exclude _DS_store files)
+		.DS_Store
+		save and close file
+	$ ls -al
+		we can see .gitignore file
+	$ git commit -m "adding git ignore file to exclude unwanted files"
+
+Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+$ mkdir log
+//move access.log file to log folder
+Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+$ mv access.log log
+
+
+
+
+35. Cleanup and Back to Origin (GitHub)
+3min
+
+
+36. Git Basics Resources

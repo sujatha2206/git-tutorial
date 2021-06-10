@@ -1,0 +1,90 @@
+Section 12: Bonus: Office Hour Sessions
+0 / 6|42min
+
+Progress cannot be changed for this item
+77. Reset and Reflog (Office Hours, Session 1)
+12min
+git reset Head^
+git reflog
+git reset commitid
+git reset Head@{2}
+
+Progress cannot be changed for this item
+78. Compare Branches via GitHub (Office Hours,
+Session 1)
+5min
+
+Progress cannot be changed for this item
+79. Compare Branches via Command Line (Office
+Hours, Session 1)
+6min
+git branch test origin/testBranch -> taking ref as testbranch
+Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+$ git branch test origin/testBranch
+Branch 'test' set up to track remote branch 'testBranch' from 'origin'.
+
+Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+$ git checkout test
+Switched to branch 'test'
+Your branch is up to date with 'origin/testBranch'.
+
+Suji@SujathaJinka MINGW64 ~/projects/git-demo (test)
+$ git pull
+Already up to date.
+
+Suji@SujathaJinka MINGW64 ~/projects/git-demo (test)
+$ git diff master test
+diff --git a/README.md b/README.md
+index 3a8290f..66b5af6 100644
+--- a/README.md
++++ b/README.md
+@@ -8,5 +8,5 @@ for git training
+ deployo n ay webs eerver
+ ## How To Contribute
+ check fork and apply changes
+-
+-@Copyright 2020
+\ No newline at end of file
++github updated branch
++@Copyright 2020
+
+
+
+Progress cannot be changed for this item
+80. Stash vs Branch (Office Hours, Session 1)
+10min
+
+Progress cannot be changed for this item
+81. Gitting Help (Office Hours, Session 1)
+1min
+git stash help
+
+Progress cannot be changed for this item
+82. Cherry Pick (Office Hours, Session 1)
+8min\
+
+And I'm not sure we can cover that in five minutes but I will try
+
+and think it best way cherry pick so I guess I could just tell you how it when you would want to use
+
+cherry pick if you have two branches so you have master and maybe you have your development stream that
+
+you have and you decide that there is a hotfix that you had to apply to master and you just had there
+
+was a production issue and you need to put that that fixed back into your development stream where you
+
+need to pick out a one particular comment and maybe put it into master as your commit as your hotfix
+
+because you had to fix it at a particular time in history.
+
+Then you can use cherry pick to just bring that one single commit down to wherever you need to go.
+
+And that's that's why you would want to cherry pick it is a little bit more of an advanced topic.
+
+I trim it if I cover that one or not in my courses.
+
+IF U HAVE CHANGES IN develop and master diff
+,but u need to get chnages from develop to master
+so in master:git cherry-pick develop-commotid
+
+

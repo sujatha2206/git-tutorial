@@ -1,0 +1,26 @@
+Section 4: Text Editor Installation
+0 / 6|18min
+
+15. Text Editor Installation Overview
+1min
+
+16. Windows Text Editor: Notepad++ Installation
+5min
+
+17. Configure Notepad++ with Git (Windows Only)
+5min
+
+Suji@SujathaJinka MINGW64 ~
+$ cat ~/.gitconfig
+[user]
+        email = maheswarlasujatha2206@gmail.com
+        name = sujatha
+
+
+18. Mac Text Editor: TextMate 2 Installation
+3min
+
+19. Configure Text Mate 2 with Git (Mac Only)
+3min
+
+20. Text Editor Resources

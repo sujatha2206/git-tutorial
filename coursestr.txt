@@ -1,0 +1,112 @@
+Section 11: Tagging(instead of commit id we can use tagging also to find diff,->comparing git diff commit id1 commitid2 or git diff tag21 tag2)
+git tag tagname commitid -> to supply tag for specific commit)
+
+0 / 7|22min
+--decorate command in log command
+Head->pointer
+master ->master branch on local
+origin/master -> master branch on remote repository
+origin/Head
+
+
+70. Simple Tag Example / Lightweight Tags
+4min
+tag means label,we can apply any commit in history
+git tag Mytag -> new tag created ->it will point to current commit
+git tag --list -> shiw list if tag
+
+	Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+		$ git tag myTag
+
+		Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+		$ git tag --list
+		myTag
+
+		Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+		$ git log --oneline --graph --decorate --all
+		* 3558cf1 (HEAD -> master, tag: myTag, origin/master, origin/HEAD) stash chnages for branch
+		* 34bfcec stash chnages
+		* 57c8a90 done with changes
+		* 62f2c31 adding for stash changes
+
+
+71. Annotated Tags
+3min
+git tag -a (a means annotated)
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git tag -a v-1.0
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git tag --list
+				v-1.0
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git log --oneline --graph --decorate --all
+				* 3558cf1 (HEAD -> master, tag: v-1.0, origin/master, origin/HEAD) stash chnages for branch
+				* 34bfcec stash chnages
+				* 57c8a90 done with changes
+				* 62f2c31 adding for stash changes
+				* c1ab70d adding github after rebase conflct
+				* d61e243 Update start.txt
+				* fedc0d9 adding more troubles after rebase conflct
+				* d3248a8 adding changes in rebase conflict
+				* 43bc9c7 adding chnages in start file for rebase conflicts
+				* 623fab7 adding chnages in start file inmaster before rebase conflict
+				* 5ade7b5 applying chnages for rebase
+				* 68b7f0b applying chnages for rebase in master
+				*   acb3cb5 resolved conflict test
+				|\
+				| * e70046c test for conflicts in same page
+				* | b856ac7 test chnages for conflic in sam efile master
+				|/
+				* b631b0e adding ignore files
+				*   510b8b2 Done resolving conflicts
+				|\
+				| * e97689b adding for conflicts in real work
+				* | 0a10b65 adding chnages in newfile to resolve conflicts
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git show v-1.0
+				tag v-1.0
+				Tagger: sujatha <maheswarlasujatha2206@gmail.com>
+				Date:   Thu Aug 27 12:33:03 2020 +0530
+
+				Release 1.0
+
+				commit 3558cf1063b7fac7aaaad3cef97217d7ae92d50d (HEAD -> master, tag: v-1.0, origin/master, origin/HEAD)
+				Author: sujatha <maheswarlasujatha2206@gmail.com>
+				Date:   Wed Aug 26 17:33:34 2020 +0530
+
+					stash chnages for branch
+
+				diff --git a/start.txt b/start.txt
+				index 9d9d233..aec8bbe 100644
+				--- a/start.txt
+				+++ b/start.txt
+				@@ -14,3 +14,4 @@ adding this for stash chnages
+				 hjfjgjhj
+				 stash
+				 dding line in bigtrouble branch
+				+hgvfhjgv
+				\ No newline at end of file
+
+
+72. Comparing Tags
+5min
+comparing git diff commit id1 commitid2 or git diff tag21 tag2)
+73. Tagging a Specific Commit
+2min
+git tag commitid
+74. Updating Tags
+2min
+git tag -a tagname -f correctcommitid
+
+75. Using Tags with GitHub
+5min
+git push origin tagname
+git push origin master --tags -> synchronisie master branch with tags 
+git push origin  :tagname -> to delete tags in remote
+
+
+76. Tagging Section Resources
+2min

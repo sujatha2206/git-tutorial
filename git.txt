@@ -1,0 +1,95 @@
+two types of source control:
+	1.centralised:subversion,cvs,clearcase:central server required:requires connection to centrral server for most operations
+	2.distributed:Git,mercurial:no need central server-most operations are local.
+
+why git:
+distributed source control system
+open source
+most operations are loacl
+very fast
+
+	Key concepts:
+1.Repository(.git folder) contains files,history,config managed by git.
+2.local:three states of git.
+	working directory(with in working directory we have .git folder which contain actual repository,)
+	staging area-pre commiting holding area
+	commit-git repository(history)
+
+3.Remote repository (Github)
+4.master branch
+
+1.diff between head and origin/master
+HEAD (is pointer for latest commit) of master brach in local repo
+HEAD: the current commit your repo is on. Most of the time HEAD points to the latest commit in your current branch, 
+but that doesn't have to be the case. HEAD really just means 
+"what is my repo currently pointing at".
+
+I highly recommend the book "Pro Git" by Scott Chacon. Take time and really read it, while exploring an actual git repo as you do.
+
+HEAD: the current commit your repo is on. Most of the time HEAD points to the latest commit in your current branch, but that doesn't have to be the case. 
+HEAD really just means "what is my repo currently pointing at".
+
+In the event that the commit HEAD refers to is not the tip of any branch, this is called a "detached head".
+
+master: the name of the default branch that git creates for you when first creating a repo. In most cases, "master" means "the main branch". 
+Most shops have everyone pushing to master, and master is considered the definitive view of the repo. But it's also common for release branches to be made off of master for releasing.
+ Your local repo has its own master branch, that almost always follows the master of a remote repo.
+
+origin: the default name that git gives to your main remote repo. Your box has its own repo, and you most likely push out to some remote repo that you and all your coworkers push to. 
+That remote repo is almost always called origin, but it doesn't have to be.
+
+HEAD is an official notion in git. HEAD always has a well-defined meaning. master and origin are common names usually used in git, but they don't have to be
+
+2.diff between log nad reflog
+
+git log shows the current HEAD and its ancestry. That is, it prints the commit HEAD points to, then its parent, its parent, and so on. It traverses back through the repo's ancestry, by recursively looking up each commit's parent.
+
+(In practice, some commits have more than one parent. To see a more representative log, use a command like git log --oneline --graph --decorate.)
+Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+$ git log --oneline --graph --decorate --all
+* a09f727 (origin/master, origin/HEAD) chcelk changes
+* 1313d9b fetch & pull
+* 97f94a1 (HEAD -> master) pull and fetch
+* d40d0f6 check diff between pull and fetch
+| * f43ebc0 (origin/testBranch) test commit to show update diffs
+|/
+* 3558cf1 (tag: v-1.0) stash chnages for branch
+* 34bfcec stash chnages
+
+
+git reflog doesn't traverse HEAD's ancestry at all. The reflog is an ordered list of the commits that HEAD has pointed to: it's undo history for your repo. The reflog isn't part of the repo itself
+ (it's stored separately to the commits themselves) and isn't included in pushes, fetches or clones; it's purely local.
+
+
+Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+$ git reflog
+97f94a1 (HEAD -> master) HEAD@{0}: pull: Fast-forward
+d40d0f6 HEAD@{1}: merge refs/remotes/origin/master: Fast-forward
+3558cf1 (tag: v-1.0) HEAD@{2}: checkout: moving from test to master
+f43ebc0 (origin/testBranch) HEAD@{3}: checkout: moving from master to test
+3558cf1 (tag: v-1.0) HEAD@{4}: merge newchanges: Fast-forward
+34bfcec HEAD@{5}: checkout: moving from newchanges to master
+3558cf1 (tag: v-1.0) HEAD@{6}: commit: stash chnages for branch
+34bfcec HEAD@{7}: checkout: moving from master to newchanges
+34bfcec HEAD@{8}: reset: moving to HEAD
+34bfcec HEAD@{9}: reset: moving to HEAD
+34bfcec HEAD@{10}: reset: moving to HEAD
+
+
+3.diff between fetch amd pull
+fetch:
+git fetch is the command that says "bring my local copy of the remote repository up to date."
+
+git pull says "bring the changes in the remote repository to where I keep my own code."
+
+Normally git pull does this by doing a git fetch to bring the local copy of the remote repository up to date, a
+nd then merging the changes into your own code repository and possibly your working copy.
+
+git fetch and merge = get pull
+
+
+
+
+
+
+

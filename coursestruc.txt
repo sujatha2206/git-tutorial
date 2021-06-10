@@ -1,0 +1,410 @@
+Section 10: Stashing
+0 / 6|27min
+untracked,not staged,stages,commited areas in git
+
+64. Simple Stash Example
+6min
+git stash- >remove changes
+git stash -u ->adding untarcked files in stash
+git stash  apply - >restore that change
+git stash list
+git stash drop
+git stash apply and drop = git stash pop
+git stash save -m "applying changes" -> like commit msg ,to woork with multiple stashes
+git stash show stash@{0} -> to see last modified stash chnages
+git stash apply stash@{1} -> to revert this stash 1 index chnages
+git stash drop stash@{1}
+git stash clear-> clear or drop all stashes
+git stash branch newchnages-> it create new branch apply all stashes and it removesstash list
+
+
+					Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+					$ git status
+					On branch master
+					Your branch is up to date with 'origin/master'.
+
+					Changes not staged for commit:
+					  (use "git add <file>..." to update what will be committed)
+					  (use "git restore <file>..." to discard changes in working directory)
+							modified:   start.txt
+
+					no changes added to commit (use "git add" and/or "git commit -a")
+
+					Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+					$ git stash
+					Saved working directory and index state WIP on master: c1ab70d adding github after rebase conflct
+
+					Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+					$ git status
+					On branch master
+					Your branch is up to date with 'origin/master'.
+
+					nothing to commit, working tree clean
+
+					Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+					$ git status
+					On branch master
+					Your branch is up to date with 'origin/master'.
+
+					Changes not staged for commit:
+					  (use "git add <file>..." to update what will be committed)
+					  (use "git restore <file>..." to discard changes in working directory)
+							modified:   newfilename.txt
+
+					no changes added to commit (use "git add" and/or "git commit -a")
+
+					Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+					$ git commit -am "adding for stash changes"
+					[master 62f2c31] adding for stash changes
+					 1 file changed, 1 insertion(+)
+
+					Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+					$ git status
+					On branch master
+					Your branch is ahead of 'origin/master' by 1 commit.
+					  (use "git push" to publish your local commits)
+
+					nothing to commit, working tree clean
+
+					Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+					$ git stash apply
+					On branch master
+					Your branch is ahead of 'origin/master' by 1 commit.
+					  (use "git push" to publish your local commits)
+
+					Changes not staged for commit:
+					  (use "git add <file>..." to update what will be committed)
+					  (use "git restore <file>..." to discard changes in working directory)
+							modified:   start.txt
+
+					no changes added to commit (use "git add" and/or "git commit -a")
+
+					Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+					$ git commit -am "done with changes"
+					[master 57c8a90] done with changes
+					 1 file changed, 2 insertions(+), 1 deletion(-)
+
+					Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+					$ git status
+					On branch master
+					Your branch is ahead of 'origin/master' by 2 commits.
+					  (use "git push" to publish your local commits)
+
+					nothing to commit, working tree clean
+
+					Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+					$ git stash list
+					stash@{0}: WIP on master: c1ab70d adding github after rebase conflct
+
+					Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+					$ git stash drop
+					Dropped refs/stash@{0} (aad8518f08c5813ab3ebc2ba6411619ec07afc52)
+
+
+
+65. Stashing Untracked Files and Using Pop
+5min
+	
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git status
+				On branch master
+				Your branch is ahead of 'origin/master' by 2 commits.
+				  (use "git push" to publish your local commits)
+
+				Changes not staged for commit:
+				  (use "git add <file>..." to update what will be committed)
+				  (use "git restore <file>..." to discard changes in working directory)
+						modified:   english.txt
+
+				Untracked files:
+				  (use "git add <file>..." to include in what will be committed)
+						stashuntracked.txt
+
+				no changes added to commit (use "git add" and/or "git commit -a")
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git stash
+				Saved working directory and index state WIP on master: 57c8a90 done with changes
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git stash list
+				stash@{0}: WIP on master: 57c8a90 done with changes
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git stash drop
+				Dropped refs/stash@{0} (4b22fa88412757006a02752fd9f1fc530b76198b)
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git status
+				On branch master
+				Your branch is ahead of 'origin/master' by 2 commits.
+				  (use "git push" to publish your local commits)
+
+				Untracked files:
+				  (use "git add <file>..." to include in what will be committed)
+						stashuntracked.txt
+
+				nothing added to commit but untracked files present (use "git add" to track)
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git stash -u
+				Saved working directory and index state WIP on master: 57c8a90 done with changes
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git stash list
+				stash@{0}: WIP on master: 57c8a90 done with changes
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git status
+				On branch master
+				Your branch is ahead of 'origin/master' by 2 commits.
+				  (use "git push" to publish your local commits)
+
+				nothing to commit, working tree clean
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git status
+				On branch master
+				Your branch is ahead of 'origin/master' by 2 commits.
+				  (use "git push" to publish your local commits)
+
+				Changes not staged for commit:
+				  (use "git add <file>..." to update what will be committed)
+				  (use "git restore <file>..." to discard changes in working directory)
+									modified:   start.txt
+
+			no changes added to commit (use "git add" and/or "git commit -a")
+
+			Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+			$ git commit -am "stash chnages"
+			[master 34bfcec] stash chnages
+			 1 file changed, 1 insertion(+), 1 deletion(-)
+
+			Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+			$ git stash
+			No local changes to save
+
+			Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+			$ git stash list
+			stash@{0}: WIP on master: 57c8a90 done with changes
+
+			Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+			$ git stash pop
+			Already up to date!
+			On branch master
+			Your branch is ahead of 'origin/master' by 3 commits.
+			  (use "git push" to publish your local commits)
+
+			Untracked files:
+			  (use "git add <file>..." to include in what will be committed)
+					stashuntracked.txt
+
+			nothing added to commit but untracked files present (use "git add" to track)
+			Dropped refs/stash@{0} (8f6e97b3d4fc115668f657a460dfbfb1e085ad1a)
+
+			Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+			$ rm -stashuntracked.txt
+			rm: unknown option -- s
+			Try 'rm --help' for more information.
+
+			Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+			$ rm --stashuntracked.txt
+			rm: unknown option -- stashuntracked.txt
+			Try 'rm --help' for more information.
+
+			Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+			$ rm stashuntracked.txt
+
+
+
+66. Managing Multiple Stashes
+6min
+
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git status
+				On branch master
+				Your branch is ahead of 'origin/master' by 3 commits.
+				  (use "git push" to publish your local commits)
+
+				Changes not staged for commit:
+				  (use "git add <file>..." to update what will be committed)
+				  (use "git restore <file>..." to discard changes in working directory)
+						modified:   start.txt
+
+				no changes added to commit (use "git add" and/or "git commit -a")
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git stash -m "start file stashing"
+				Saved working directory and index state On master: start file stashing
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git status
+				On branch master
+				Your branch is ahead of 'origin/master' by 3 commits.
+				  (use "git push" to publish your local commits)
+
+				Changes not staged for commit:
+				  (use "git add <file>..." to update what will be committed)
+				  (use "git restore <file>..." to discard changes in working directory)
+						modified:   newfilename.txt
+
+				no changes added to commit (use "git add" and/or "git commit -a")
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git stash -m "newfile stashing"
+				Saved working directory and index state On master: newfile stashing
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git stash list
+				stash@{0}: On master: newfile stashing
+				stash@{1}: On master: start file stashing
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git stash show stash@{1}
+				 start.txt | 1 +
+				 1 file changed, 1 insertion(+)
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git status
+				On branch master
+				Your branch is ahead of 'origin/master' by 3 commits.
+				  (use "git push" to publish your local commits)
+
+				nothing to commit, working tree clean
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git stash apply stash@{1}
+				On branch master
+				Your branch is ahead of 'origin/master' by 3 commits.
+				  (use "git push" to publish your local commits)
+
+				Changes not staged for commit:
+				  (use "git add <file>..." to update what will be committed)
+				  (use "git restore <file>..." to discard changes in working directory)
+						modified:   start.txt
+
+				no changes added to commit (use "git add" and/or "git commit -a")
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git stash list
+				stash@{0}: On master: newfile stashing
+				stash@{1}: On master: start file stashing
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git stash drop stash@{1}
+				Dropped stash@{1} (24186f6cced6a9cc8d863e144d1640a56f168a4d)
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git stash list
+				stash@{0}: On master: newfile stashing
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git stash clear
+
+				Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+				$ git stash list
+
+
+
+67. Stashing into a Branch
+6min
+
+			Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+			$ git status
+			On branch master
+			Your branch is ahead of 'origin/master' by 3 commits.
+			  (use "git push" to publish your local commits)
+
+			Changes not staged for commit:
+			  (use "git add <file>..." to update what will be committed)
+			  (use "git restore <file>..." to discard changes in working directory)
+					modified:   start.txt
+
+			no changes added to commit (use "git add" and/or "git commit -a")
+
+			Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+			$ git stash -u
+			Saved working directory and index state WIP on master: 34bfcec stash chnages
+
+			Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+			$ git stash branch newchanges
+			Switched to a new branch 'newchanges'
+			On branch newchanges
+			Changes not staged for commit:
+			  (use "git add <file>..." to update what will be committed)
+			  (use "git restore <file>..." to discard changes in working directory)
+					modified:   start.txt
+
+			Untracked files:
+			  (use "git add <file>..." to include in what will be committed)
+					stashfile.txt
+
+			no changes added to commit (use "git add" and/or "git commit -a")
+			Dropped refs/stash@{0} (a74bddf2a892f532e17116f1a17115bf68ffea2a)
+
+			Suji@SujathaJinka MINGW64 ~/projects/git-demo (newchanges)
+			$ git stash list
+
+			Suji@SujathaJinka MINGW64 ~/projects/git-demo (newchanges)
+			$ git status
+			On branch newchanges
+			Changes not staged for commit:
+			  (use "git add <file>..." to update what will be committed)
+			  (use "git restore <file>..." to discard changes in working directory)
+					modified:   start.txt
+
+			Untracked files:
+			  (use "git add <file>..." to include in what will be committed)
+					stashfile.txt
+
+			no changes added to commit (use "git add" and/or "git commit -a")
+
+			Suji@SujathaJinka MINGW64 ~/projects/git-demo (newchanges)
+			$ rm stashfile.txt
+
+			Suji@SujathaJinka MINGW64 ~/projects/git-demo (newchanges)
+			$ git status
+			On branch newchanges
+			Changes not staged for commit:
+			  (use "git add <file>..." to update what will be committed)
+			  (use "git restore <file>..." to discard changes in working directory)
+					modified:   start.txt
+
+			no changes added to commit (use "git add" and/or "git commit -a")
+
+			Suji@SujathaJinka MINGW64 ~/projects/git-demo (newchanges)
+			$ git commit -am "stash chnages for branch"
+			[newchanges 3558cf1] stash chnages for branch
+			 1 file changed, 1 insertion(+)
+
+			Suji@SujathaJinka MINGW64 ~/projects/git-demo (newchanges)
+			$ git checkout master
+			Switched to branch 'master'
+			Your branch is ahead of 'origin/master' by 3 commits.
+			  (use "git push" to publish your local commits)
+
+			Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+			$ git merge newchanges
+			Updating 34bfcec..3558cf1
+			Fast-forward
+			 start.txt | 1 +
+			 1 file changed, 1 insertion(+)
+
+			Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+			$ git branch -d  newchanges
+			Deleted branch newchanges (was 3558cf1).
+
+			Suji@SujathaJinka MINGW64 ~/projects/git-demo (master)
+			$ git branch -al
+			* master
+			  remotes/origin/HEAD -> origin/master
+			  remotes/origin/master
+
+
+
+68. Section Cleanup and push to GitHub
+1min
+
+69. Stashing Section Resources
+3min
